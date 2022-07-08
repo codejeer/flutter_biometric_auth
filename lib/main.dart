@@ -1,5 +1,4 @@
 import 'dart:io' show Platform;
-
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:flutter/services.dart';
@@ -44,10 +43,9 @@ class _MyAppState extends State<MyApp> {
                         biometricOnly: true,
                       ),
                     );
-                    // ···
                   } on PlatformException catch (e) {
                     if (e.code == auth_error.notEnrolled) {
-                      // Add handling of no hardware here.
+                      print("device not suppoprted");
                     } else if (e.code == auth_error.lockedOut ||
                         e.code == auth_error.permanentlyLockedOut) {}
                   }
@@ -56,7 +54,7 @@ class _MyAppState extends State<MyApp> {
                 },
                 child: Text(Platform.isIOS == true
                     ? "Authenticate with FaceID"
-                    : "Authenticated"),
+                    : "Authenticate"),
               ),
               const Spacer()
             ],
